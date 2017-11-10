@@ -1,0 +1,69 @@
+Metadata key from Supplementary Table 1 from Seo et al. 2012
+Article at: http://genome.cshlp.org/content/22/11/2109.full
+
+BibTeX format citation:
+
+@article{seo2012transcriptional,
+  title={The transcriptional landscape and mutational profile of lung adenocarcinoma},
+  author={Seo, Jeong-Sun and Ju, Young Seok and Lee, Won-Chul and Shin, Jong-Yeon and Lee, June Koo and Bleazard, Thomas and Lee, Junho and Jung, Yoo Jin and Kim, Jung-Oh and Shin, Jung-Young and others},
+  journal={Genome research},
+  year={2012},
+  publisher={Cold Spring Harbor Lab}
+}
+
+Original tables available at: http://genome.cshlp.org/content/22/11/2109/suppl/DC1
+
+
+Columns
+Coding values
+-------
+
+Publication_index
+
+Age_at_diagnosis
+
+Gender
+1=male
+2=female
+
+Smoking_status
+(0=neverSmoker;1=smoker;2=current_smoker;3=unknown)"
+
+Stage
+
+Cancer_RNA_Quality
+0=poor;1=good;NE=NotExtracted
+
+Cancer_RNAseq
+0=no;1=yes
+
+Normal_RNAseq
+0=no;1=yes
+
+Normal_ExomeSeq
+0=no;1=yes
+
+EGFR e18-e21
+NE=notExamined,0=noMutation,description
+
+EGFR Summary
+NE=notExamined,0=noMutation,description
+
+KRAS
+NE=notExamined,wt=wildtype,description
+
+EML4-ALK
+NE=notExamined
+0=no
+1=yes
+
+FUSION 
+1=No
+2=YES
+
+LN Mets
+0=No,
+1=Yes
+NA=NotAvailable
+
+Potential Driver Mutations
