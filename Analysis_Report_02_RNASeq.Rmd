@@ -37,6 +37,7 @@ library("dplyr")
 library("tidyr")
 library("knitr")
 library("ggplot2")
+library("magrittr")
 
 # this package allows for the easy inclusion of literature citations in our Rmd
 # more info here: https://github.com/crsh/citr
@@ -52,6 +53,9 @@ library("citr")
 # how you analyze the data so that you don't overwhelm your laptop
 load("output/final_compiled_counts/joined_count_data.RData")
 
+# changes all columns names to lower case so Travis doesn't complain
+names(final_table) %<>% tolower
+
 # test that it loaded correctly before proceeding
 stopifnot(exists("final_table"))
 ```
@@ -61,10 +65,10 @@ stopifnot(exists("final_table"))
 # subset it down to just a few here to look for interesting patterns
 # in the most highly expressed
 top_15 <- final_table %>%
-  group_by(Gender, GeneName) %>%
-  summarize(mean_count = mean(counts_lengthScaledTPM)) %>%
+  group_by(gender, genename) %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   arrange(desc(mean_count)) %>%
-  head(n = 15) 
+  head(n = 15)
 
 # then we can use the `kable()` function to make a nicely formatted
 # markdown table
@@ -77,11 +81,11 @@ top_15 %>%
 ```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
 # this code uses the same data as above, but use it to make a 
 # barplot - remember geom_col() is just like 
-# geom_bar(stat = "identity")
+# when you use geom_bar(stat = "identity")
 top_15 %>%
-  ggplot(aes(x = GeneName,
+  ggplot(aes(x = genename,
              y = mean_count,
-             fill = Gender)) +
+             fill = gender)) +
     geom_col(position = "dodge")
 ```
 
@@ -94,7 +98,7 @@ top_15 %>%
 # we did when making histograms several weeks ago
 top_genes <- top_15 %>%
   ungroup() %>%
-  select(GeneName) %>%
+  select(genename) %>%
   unique() %>%
   pull()
 
@@ -102,13 +106,13 @@ top_genes <- top_15 %>%
 # we don't just want summary data, we want all the data in 
 # order to make boxplots
 final_table %>%
-  filter(GeneName %in% top_genes) %>%
-  ggplot(aes(x = GeneName,
-             y = counts_lengthScaledTPM,
-             fill = Gender)) +
+  filter(genename %in% top_genes) %>%
+  ggplot(aes(x = genename,
+             y = counts_lengthscaledtpm,
+             fill = gender)) +
     geom_boxplot() +
-    facet_wrap(~Cancer_stage) +
-    xlab("Gene Name") + 
+    facet_wrap(~cancer_stage) +
+    xlab("Gene Name") +
     ylab("Scaled read counts per gene") +
     ggtitle("Read counts per gene by gender and cancer stage") +
     theme_bw() + # simplifies theme
