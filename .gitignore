@@ -3,4 +3,9 @@ output
 _ncbi_downloads
 error-logs
 misc
-
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rbuildignore
+.DS_Store
