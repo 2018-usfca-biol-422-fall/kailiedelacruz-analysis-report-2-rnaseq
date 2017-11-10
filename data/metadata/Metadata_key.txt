@@ -1,5 +1,12 @@
-Metadata key from Supplementary Table 1 from Seo et al. 2012
+Metadata key
+------------
+
+for Supplementary Table 1 from Seo et al. 2012
+to go along with raw data at
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40419
+
 Article at: http://genome.cshlp.org/content/22/11/2109.full
+Original tables available at: http://genome.cshlp.org/content/22/11/2109/suppl/DC1
 
 BibTeX format citation:
 
@@ -11,12 +18,13 @@ BibTeX format citation:
   publisher={Cold Spring Harbor Lab}
 }
 
-Original tables available at: http://genome.cshlp.org/content/22/11/2109/suppl/DC1
 
+##########################################
+##########################################
 
 Columns
 Coding values
--------
+-------------
 
 Publication_index
 
@@ -27,42 +35,56 @@ Gender
 2=female
 
 Smoking_status
-(0=neverSmoker;1=smoker;2=current_smoker;3=unknown)"
+0=neverSmoker
+1=smoker
+2=current_smoker
+3=unknown
 
 Stage
 
 Cancer_RNA_Quality
-0=poor;1=good;NE=NotExtracted
+0=poor
+1=good
+NE=NotExtracted
 
 Cancer_RNAseq
-0=no;1=yes
+0=no
+1=yes
 
 Normal_RNAseq
-0=no;1=yes
+0=no
+1=yes
 
 Normal_ExomeSeq
-0=no;1=yes
+0=no
+1=yes
 
 EGFR e18-e21
-NE=notExamined,0=noMutation,description
+NE=notExamined
+0=noMutation
+description
 
 EGFR Summary
-NE=notExamined,0=noMutation,description
+NE=notExamined
+0=noMutation
+description
 
 KRAS
-NE=notExamined,wt=wildtype,description
+NE=notExamined
+wt=wildtype
+description
 
 EML4-ALK
 NE=notExamined
 0=no
 1=yes
 
-FUSION 
+FUSION
 1=No
 2=YES
 
 LN Mets
-0=No,
+0=No
 1=Yes
 NA=NotAvailable
 
