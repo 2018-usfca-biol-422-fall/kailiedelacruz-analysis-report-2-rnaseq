@@ -7,7 +7,7 @@ bibliography: references.bib
 csl: bioinformatics.csl
 ---
 
-Remove me: Overall, a single-spaced page is about 500 words. So if the guidelines say half of a page, think about writing around 250 words. You can use the wordcountaddin in RStudio to track your progress.
+*Overall, a single-spaced page is about 500 words. So if the guidelines say half of a page, think about writing around 250 words. You can use the wordcountaddin in RStudio to track your progress.*
 
 # Introduction
 
@@ -27,7 +27,7 @@ These are the methods that were used to process the sequencing data. Should prob
 
 In addition to a minimum of 4-5 figures/tables (and associated captions), you should include sufficient text in this section to describe what your findings were. Remember that in the results section you just describe what you found, but you don't interpret it - that happens in the discussion.
 
-```{r load-libraries, message = FALSE}
+```{r load-libraries, message = FALSE, echo = FALSE}
 # Be sure to install these packages before running this script
 # They can be installed either with the intall.packages() function
 # or with the 'Packages' pane in RStudio
@@ -45,7 +45,79 @@ library("ggplot2")
 library("citr")
 ```
 
+```{r load-data, message = FALSE, echo = FALSE}
+# load the dataset from a compressed binary file
+# it gets loaded as an object called "final_table"
+# this has 3.4 million rows...so you will need to be thoughtful about 
+# how you analyze the data so that you don't overwhelm your laptop
+load("output/final_compiled_counts/joined_count_data.RData")
 
+# test that it loaded correctly before proceeding
+stopifnot(exists("final_table"))
+```
+
+```{r make-summary-table, echo = FALSE}
+# There are many many genes in this dataset, so we can 
+# subset it down to just a few here to look for interesting patterns
+# in the most highly expressed
+top_15 <- final_table %>%
+  group_by(Gender, GeneName) %>%
+  summarize(mean_count = mean(counts_lengthScaledTPM)) %>%
+  arrange(desc(mean_count)) %>%
+  head(n = 15) 
+
+# then we can use the `kable()` function to make a nicely formatted
+# markdown table
+top_15 %>%
+  kable()
+```
+
+**Table 1**: The most highly expressed genes in both genders included *SFTPB* and *EEF1A1*.
+
+```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
+# this code uses the same data as above, but use it to make a 
+# barplot - remember geom_col() is just like 
+# geom_bar(stat = "identity")
+top_15 %>%
+  ggplot(aes(x = GeneName,
+             y = mean_count,
+             fill = Gender)) +
+    geom_col(position = "dodge")
+```
+
+**Figure 1**: Here we show an example figure caption.
+
+```{r make-boxplot-of-highly-expressed-genes, echo = FALSE}
+# here we just want to pull out the unique gene names and turn
+# them into a vector so we can use it below to make a boxplot
+# we use the pull() funtion to get this as a vector, just like 
+# we did when making histograms several weeks ago
+top_genes <- top_15 %>%
+  ungroup() %>%
+  select(GeneName) %>%
+  unique() %>%
+  pull()
+
+# now we need to filter from the full data set again, because 
+# we don't just want summary data, we want all the data in 
+# order to make boxplots
+final_table %>%
+  filter(GeneName %in% top_genes) %>%
+  ggplot(aes(x = GeneName,
+             y = counts_lengthScaledTPM,
+             fill = Gender)) +
+    geom_boxplot() +
+    facet_wrap(~Cancer_stage) +
+    xlab("Gene Name") + 
+    ylab("Scaled read counts per gene") +
+    ggtitle("Read counts per gene by gender and cancer stage") +
+    theme_bw() + # simplifies theme
+    theme(axis.text.x = # rotates x axis labels vertically
+            element_text(angle = 90,
+                         hjust = 1))
+```
+
+**Figure 2**: Here we show another example figure caption.
 
 # Discussion
 
