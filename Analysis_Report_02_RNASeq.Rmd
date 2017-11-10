@@ -1,0 +1,54 @@
+---
+title: "Analysis Report 2: Your Title Here"
+author: "Don Francisco"
+date: "November 10, 2017"
+output: github_document
+bibliography: references.bib
+csl: bioinformatics.csl
+---
+
+Remove me: Overall, a single-spaced page is about 500 words. So if the guidelines say half of a page, think about writing around 250 words. You can use the wordcountaddin in RStudio to track your progress.
+
+# Introduction
+
+Add about 1 page here. Must cite at least 5 peer reviewed articles.
+
+# Methods
+
+## Sample origin and sequencing
+
+Add about half a page here. In this section instead of first person (I/we), use Li et al. [@li2015rna] and Seo et al. [@seo2012transcriptional], since you'll just be describing what they did, based on the methods in their paper(s). It's important to include this so the reader knows what the study design was for the data you will be presenting.
+
+## Computational
+
+These are the methods that were used to process the sequencing data. Should probably be at least a half of a page. At a very minimum should include citations for biomartr, trimmomatic, and sailfish. Note that these three methods references don't count towards the five references you need to cite in the introduction.
+
+# Results
+
+In addition to a minimum of 4-5 figures/tables (and associated captions), you should include sufficient text in this section to describe what your findings were. Remember that in the results section you just describe what you found, but you don't interpret it - that happens in the discussion.
+
+```{r load-libraries, message = FALSE}
+# Be sure to install these packages before running this script
+# They can be installed either with the intall.packages() function
+# or with the 'Packages' pane in RStudio
+
+# load general-use packages
+library("dplyr")
+library("tidyr")
+library("knitr")
+library("ggplot2")
+
+# this package allows for the easy inclusion of literature citations in our Rmd
+# more info here: https://github.com/crsh/citr
+# and here:
+# http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+library("citr")
+```
+
+
+
+# Discussion
+
+Add around 1-2 pages interpreting your results and considering future directions one might take in analyzing these data.
+
+# Sources Cited
