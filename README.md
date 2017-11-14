@@ -1,6 +1,6 @@
 # Analysis Report 2 for BIOL395
 # Using RNA-Seq data to understand gene expression changes from smoking and lung adenocarcinomas
-## Due as a pull request on Monday, November 20th, 2017 before 11:30 am
+## Due as a pull request on Monday, November 20th, 2017 before 5:00 pm
 
 The **goal of this assignment** is to have you build your skills with dplyr and ggplot to analyze gene expression levels from the Li/Seo *et al.* RNASeq dataset, and continue to build your skills in R, markdown, scientific writing, and exploratory data analysis.
 
@@ -24,7 +24,7 @@ The grading breakdown will be as follows:
 * 5 points - Appropriate use of git to version control the steps, including adding files and making commits frequently as you work on this assignment, and writing informative and appropriately formatted commit messages. Can't have too many commits, but you can have too few!
 * 10 points - Pull Request passes automated checks for file being able to be sucessfully knitted on another machine, as well as having all code style errors fixed. This is an all or nothing set of points, so please make sure your report passes these checks! You can submit your PR early to catch errors. Contact me well before the deadline if you are having trouble with this part of the assignment.
 
-You must submit your work as a Pull Request to the class organization ('2017-usfca-biol-395') on GitHub by 11:30 am on Monday, November 20th for full credit. We will also be peer reviewing the reports after they are submitted, as usual.
+You must submit your work as a Pull Request to the class organization ('2017-usfca-biol-395') on GitHub by 5:00 pm on Monday, November 20th for full credit. We will also be peer reviewing the reports after they are submitted, as usual.
 
 Steps:
 
