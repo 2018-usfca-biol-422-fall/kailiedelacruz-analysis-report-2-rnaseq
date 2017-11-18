@@ -37,7 +37,7 @@ library("tibble")
 
 # Load the transcript to gene lookup table we constructed
 # this needs to be tx ID, then gene ID
-tx2gene <- read.table(paste0("./output/gene_name_loopup_files/",
+tx2gene <- read.table(paste0("./output/gene_name_lookup_files/",
                              "transcript_to_gene_lookup_2cols.txt"),
                       header = FALSE,
                       col.names =
@@ -99,7 +99,7 @@ sample_metadata_recoded  <- sample_metadata %>%
 
 # construct vector of paths to each of the sailfish quant files to read in
 # and add names so that the sample names get added to the constructed table
-files <- file.path("output", "sailfish_quants", samples$Run_s, "quant.sf")
+files <- file.path(".", "output", "sailfish_quants", samples$Run_s, "quant.sf")
 names(files) <- samples$Run_s
 
 # error out if the files don't exist
@@ -132,13 +132,24 @@ final_table <- txi$counts %>%
            value = "counts_lengthScaledTPM",
            -GeneName) %>%
     left_join(samples, by = c("Sample" = "Run_s")) %>%
+    mutate_if(is.factor, as.character) %>%
+    mutate(normal_or_cancer = ifelse(!is.na(unlist(
+                                          lapply(Sample_Name_s,
+                                                 function(x) strsplit(x, "_")[[1]][3]))),
+                                     "normal", "cancer")) %>%
+    mutate(sample_id_all = paste(unlist(
+               lapply(Sample_Name_s,
+                      function(x) paste(strsplit(x, "_")[[1]][1:2],
+                                        collapse = "_"))))) %>%
     left_join(sample_metadata_recoded,
-              by = c("Sample_Name_s" = "Subject_ID")) %>%
+              by = c("sample_id_all" = "Subject_ID")) %>%
     filter(!is.na(Age_at_diagnosis)) %>%
     select(GeneName,
            Sample,
            counts_lengthScaledTPM,
            Sample_Name_s,
+           normal_or_cancer,
+           sample_id_all,
            Age_at_diagnosis,
            Gender,
            Smoking_status,
