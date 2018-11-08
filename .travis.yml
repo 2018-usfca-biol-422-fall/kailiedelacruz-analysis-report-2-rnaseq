@@ -4,6 +4,7 @@ language: r
 r: bioc-devel
 repos:
   CRAN: https://cloud.r-project.org
+before_script: R -e "BiocManager::install(version='devel', ask=FALSE)"
 sudo: false
 cache: packages
 env:
