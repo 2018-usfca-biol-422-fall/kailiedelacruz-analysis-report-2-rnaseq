@@ -34,6 +34,7 @@ library("tximportData")
 library("tidyr")
 library("dplyr")
 library("tibble")
+library("magrittr")
 
 # Load the transcript to gene lookup table we constructed
 # this needs to be tx ID, then gene ID
@@ -159,15 +160,39 @@ final_table <- txi$counts %>%
            Normal_RNASeq,
            Normal_ExomeSeq)
 
+names(final_table) %<>% tolower
+
+
+# create raw abundance table (not normalized) as this is what DESEQ2 needs
+txi_for_deseq <- tximport(files,
+                          type = "sailfish",
+                          tx2gene = tx2gene)
+
+# turn it into a data frame
+deseq_table <- txi_for_deseq$counts %>%
+    as.data.frame() %>%
+    rownames_to_column() %>%
+    rename(GeneName = rowname) %>%
+    gather(key = "Sample",
+           value = "read_abund_for_deseq",
+           -GeneName)
+
+# join to earlier table based on GeneName and Sample
+joined_table <- final_table %>%
+    left_join(deseq_table, by = c("genename" = "GeneName", "sample" = "Sample"))
+
+
+
 # write out the final table in zipped form to save space and make it fit into
 # GitHub's file size limits
-write.csv(final_table,
+write.csv(joined_table,
       file = gzfile("./output/final_compiled_counts/joined_count_data.csv.zip"),
       row.names = FALSE)
+
 # also save the tibble as an RData file, which will be much faster to read in
 # later and doesn't require the computationally expensive decompression step
 # this is where the analysis will begin, using dplyr and ggplot
-save(final_table,
+save(joined_table,
      file = "./output/final_compiled_counts/joined_count_data.RData")
 
 # to keep going with differential expression analysis, the next step would
