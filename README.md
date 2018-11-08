@@ -1,6 +1,7 @@
-# Analysis Report 2 for BIOL395
+# Analysis Report 2 for BIOL 422/423
 # Using RNA-Seq data to understand gene expression changes from smoking and lung adenocarcinomas
-## Due as a pull request on Monday, November 20th, 2017 before 5:00 pm
+## Code due as a pull request on Sunday, November 18th, 2018 before 11:59 pm
+## Final report due as a pull request on Wednesday, November 21st, 2018 before 11:59 pm
 
 The **goal of this assignment** is to have you build your skills with dplyr and ggplot to analyze gene expression levels from the Li/Seo *et al.* RNASeq dataset, and continue to build your skills in R, markdown, scientific writing, and exploratory data analysis.
 
@@ -8,7 +9,7 @@ The data we will be using is from the NCBI Sequence Read Archive study number ER
 
 For this assignment, you will only need to work in one file, the `Rmd` file entitled `Analysis_Report_02_RNASeq.Rmd`. There is some starter code in that file, with comments on how the various functions work. You should modify this document as needed, and add code chunks and markdown text to complete the following set of tasks.
 
-Similarly to how last time, you used your results as a launching off point to do some additional research on the taxa you find, this time you'll be spending some time looking up the genes that catch your interest based on how their expression levels are affected (or not affected) by smoking and lung adenocarcinoma. You can use Google Scholar or some other tool to search the peer-reviewed literature. You are now responsible for finding and citing at least **five** additional peer-reviewed studies in your analysis report - these could get added throughout your Inteoduction, Methods, and Discussion sections.
+For the last report, you used your results as a launching off point to do some additional research on the taxa you found. This time you'll be spending some time looking up the genes that catch your interest based on how their expression levels are affected (or not affected) by smoking and lung adenocarcinoma. You can use Google Scholar or some other tool to search the peer-reviewed literature. You are now responsible for finding and citing at least **five** additional peer-reviewed studies in your analysis report - these could get added throughout your Introduction, Methods, and Discussion sections.
 
 This report could focus in on, for example: what genes are most highly up-regulated in smokers, in late-stage cancer, within particular age groups, etc. It matters less to me what specific aspect of the data you focus on, and more important that you spend some time digging in to the data and developing and testing some hypotheses of your own about what is going on in this dataset.
 
@@ -24,7 +25,7 @@ The grading breakdown will be as follows:
 * 5 points - Appropriate use of git to version control the steps, including adding files and making commits frequently as you work on this assignment, and writing informative and appropriately formatted commit messages. Can't have too many commits, but you can have too few!
 * 10 points - Pull Request passes automated checks for file being able to be sucessfully knitted on another machine, as well as having all code style errors fixed. This is an all or nothing set of points, so please make sure your report passes these checks! You can submit your PR early to catch errors. Contact me well before the deadline if you are having trouble with this part of the assignment.
 
-You must submit your work as a Pull Request to the class organization ('2017-usfca-biol-395') on GitHub by 5:00 pm on Monday, November 20th for full credit. We will also be peer reviewing the reports after they are submitted, as usual.
+You must submit your code as a Pull Request to the class organization ('2018-usfca-biol-422-fall') on GitHub by 11:59 pm on Sunday, November 18th, and the full report before 11:59 pm on Wednesday, November 21st for full credit. We will also be peer reviewing the reports after they are submitted, as usual.
 
 Steps:
 
