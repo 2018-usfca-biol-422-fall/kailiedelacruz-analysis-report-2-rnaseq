@@ -181,8 +181,6 @@ deseq_table <- txi_for_deseq$counts %>%
 joined_table <- final_table %>%
     left_join(deseq_table, by = c("genename" = "GeneName", "sample" = "Sample"))
 
-
-
 # write out the final table in zipped form to save space and make it fit into
 # GitHub's file size limits
 write.csv(joined_table,
