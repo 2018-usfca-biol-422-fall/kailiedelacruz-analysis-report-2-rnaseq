@@ -1,7 +1,7 @@
 ---
 title: "Analysis Report 2: Your Title Here"
 author: "Don Francisco"
-date: "November 10, 2017"
+date: "November 21, 2018"
 output: github_document
 bibliography: references.bib
 csl: bioinformatics.csl
@@ -48,23 +48,20 @@ library("citr")
 
 ```{r load-data, message = FALSE, echo = FALSE}
 # load the dataset from a compressed binary file
-# it gets loaded as an object called "final_table"
-# this has 3.4 million rows...so you will need to be thoughtful about
+# it gets loaded as an object called "joined_table"
+# this has 6.2 million rows...so you will need to be thoughtful about
 # how you analyze the data so that you don't overwhelm your laptop
 load("output/final_compiled_counts/joined_count_data.RData")
 
-# changes all columns names to lower case so Travis doesn't complain
-names(final_table) %<>% tolower
-
 # test that it loaded correctly before proceeding
-stopifnot(exists("final_table"))
+stopifnot(exists("joined_table"))
 ```
 
 ```{r make-summary-table, echo = FALSE}
 # There are many many genes in this dataset, so we can
 # subset it down to just a few here to look for interesting patterns
 # in the most highly expressed
-top_15 <- final_table %>%
+top_15 <- joined_table %>%
   group_by(gender, genename) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   arrange(desc(mean_count)) %>%
@@ -105,7 +102,7 @@ top_genes <- top_15 %>%
 # now we need to filter from the full data set again, because
 # we don't just want summary data, we want all the data in
 # order to make boxplots
-final_table %>%
+joined_table %>%
   filter(genename %in% top_genes) %>%
   ggplot(aes(x = genename,
              y = counts_lengthscaledtpm,
