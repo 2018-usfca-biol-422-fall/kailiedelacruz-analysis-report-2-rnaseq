@@ -13,6 +13,12 @@ csl: bioinformatics.csl
 
 Add about 1 page here. Must cite at least 5 peer reviewed articles.
 
+
+Compare the EGFR, KRAS, and TP53 Genes 
+  -Take the highest expressed gene from these three and look at its specific expression in the following questions 
+Is expression higher in cancer tissue compared to normal tissue?
+Is expression higher in cancer tissue with this stage compared to this stage?
+Is expression in cancer people in advanced stages higher depending on if you are a smoker or not?
 # Methods
 
 ## Sample origin and sequencing
@@ -119,9 +125,72 @@ joined_table %>%
 ```
 
 **Figure 2**: Here we show another example figure caption.
+```{r bar-graph-of-three-genes}
+# This code creates a graph to look at the 
+# comparison of expression values in these 
+# three genes. These three genes are looked at 
+# because they are the three genes that showed 
+# variance between smokers and nonsmokers in the
+# Li et al. study. The highest expression value 
+# will be looked at in more detail in terms of its
+# expression values in cancer tissue vs. normal tissue
+# specific stages, and nonsmokers vs smokers. 
+joined_table %>%
+  filter(genename == "SERPIND1" | 
+           genename == "TNNT1" | 
+           genename == "PCSK2") %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  ggplot(aes(x = genename,
+             y = mean_count))
+    geom_col(position = "dodge")
+```
+**Figure 3** 
 
+```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
+# this code uses the same data as above, but use it to make a
+# barplot - remember geom_col() is just like
+# when you use geom_bar(stat = "identity)
+joined_table %>%
+  filter (genename == "") %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  ggplot(aes(x = genename,
+             y = mean_count,
+             fill = normal_or_cancer)) +
+    geom_col(position = "dodge")
+```
+**Figure 4** 
+
+```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
+# this code uses the same data as above, but use it to make a
+# barplot - remember geom_col() is just like
+# when you use geom_bar(stat = "identity)
+joined_table %>%
+  filter (genename == "") %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  ggplot(aes(x = genename,
+             y = mean_count,
+             fill = cancer_stage)) +
+    geom_col(position = "dodge")
+```
+**Figure 5** 
+
+```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
+# this code uses the same data as above, but use it to make a
+# barplot - remember geom_col() is just like
+# when you use geom_bar(stat = "identity)
+joined_table %>%
+  filter (genename == "") %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  ggplot(aes(x = genename,
+             y = mean_count,
+             fill = smoking_status)) +
+    geom_col(position = "dodge")
+```
+**Figure 6**
 # Discussion
 
 Add around 1-2 pages interpreting your results and considering future directions one might take in analyzing these data.
+
+Look up what the genes encode for (what protein they made) and how this can lead to cancer
 
 # Sources Cited
