@@ -9,7 +9,6 @@ csl: bioinformatics.csl
 
 # Introduction
 
-
 Lung cancer is the leading cause of death among men and women in the United States [@torre2016lung]. Worldwide, it is also the leading cause of death among men and the second leading cause of death among women. Lung cancer rates and trends around the world and in the United States vary among different factors such as sex, age, race, socioeconomic status, and geography [@devesa2005international]. In the United States specifically, mortality rates in relation to lung cancer are highest among areas in the mid-South, males, black people, and people of lower socioeconomic status. Like any cancer, this can be caused by a number of factors such as genetics, environmental quality, and smoking status. 
 
 In many studies that deal with lung cancer in the population, the smoking status of patients is most commonly looked at. In the year of 1954, William Watson and Alexander Conte, in their scientific study of looking at smoking and lung cancer mentioned how many clinical reports that looked at the relationship between tobacco smoking and lung cancer have looked into the fact that it is rare to find a lung cancer in a man who was not previously or currently a heavy smoker [@watson1954smoking]. In a more recent study as well, this fact is *still* being looked at. In the year of 2000, about 50 years later, Doll also emphasized how cigarette smoking is a significant factor in the production of carcinoma in the lung, along with all of the other harmful effects that it causes [@doll2000smoking]. 
@@ -18,7 +17,7 @@ Even with all of these factors that contribute to our possibilites of getting lu
 
 Lung cancer rates, causes, reduction recommandations, and treatment can be difficult to pinpoint and understand as there are many factors that come into play. In "RNA-seq analysis of lung adenocarcinomas reveals different gene expression profiles between smoking and nonsmokin patients," Li et al. focused on exploring the gene expression profile and identifying the similarities and differences in looking at genes in smokers and nonsmokers [@li2015rna]. In looking at RNA-seq data from paired normal and tumor tissues in both 34 nonsmoking and 34 smoking patients with lung adenocarcinoma, they applied a general linear model to identify genes that were differentially expressed in nonsmoker and smoker patients and genes that varied between the two groups. Through their research, they discovered that geen expression varied at a considerable amount between nonsmoker and smoker patients with lung adenocarcinoma. They also discovered that smoking patients had more complicated disease mechanisms and abnormality with the regualation of metabolic processes. Through transcriptome analysis, their study revealed that there were pathogenetic differences in smoking and nonsmoking patients that had lung adenocarcinoma. 
 
-In analyzing the data from Li et al.'s study, I looked at the variability in the expression of different genes. Using the TMPRSS4, SPP1, and MMP1 genes, which are genes that have been shown to be related with poor prognosis, more aggressive phenotype, or early onset of lung cancer, I had the following main question: With the gene that has the highest expression value within the three, how are the expression values of this gene affected in different patients and how do they vary in terms of cancer vs. normal tissue, the different stages of cancer, and the smoking status of the patients? In the Li et al. study, RNA-seq data was gathered from 34 nonsmoking patients and 34 smoking patients. Using this data, I trimmed the reads appropriately, ran the Sailfish tool for transcript quantification from RNA-seq data, and I built a transcript gene table. Taking a look at the gathered data, I hypothesized that the gene with the highest expression value between the three genes would also have higher expression values in tumor tissue compared to normal tissue, higher stages of the lung cancer, and in patients that have or are currently smoking. Seeing this result could ultimately lead to information that can benefit everyone. Specifically, as lung cancer is the leading cause of cancer death in the United States, understanding how genes and their expression patterns work, could give the population a better idea of how to possibly control this in the future. Specifically, if the upregulation of a certain gene is seen in tumor tissues, higher cancer stages, and positive smoking status, then we may be able to understand that this gene may be one of the introductions to lung caner. Overall, the analysis behind these genes and the data found in the Li et al. study can give us some insight about how to get more information about lung cancer in general. 
+In analyzing the data from Li et al.'s study, I looked at the variability in the expression of different genes. Using the TMPRSS4, SPP1, and MMP1 genes, which are genes that have been shown to be related with poor prognosis, more aggressive phenotype, or early onset of lung cancer, I had the following main question: With the gene that has the highest expression value within the three, how are the expression values of this gene affected in different patients and how do they vary in terms of cancer vs. normal tissue, the different stages of cancer, and the smoking status of the patients? In the Li et al. study, RNA-seq data was gathered from 34 nonsmoking patients and 34 smoking patients. Using this data, I trimmed the reads appropriately, ran the Sailfish tool for transcript quantification from RNA-seq data, and I built a transcript gene table. Taking a look at the gathered data, I hypothesized that the gene with the highest expression value between the three genes would also have higher expression values in tumor tissue compared to normal tissue, higher stages of the lung cancer, and in patients that have or are currently smoking. I could test this hypothesis by looking at the mean expression values of the three genes of TMPRSS4, SPP1, and MMP1. Using the highest expressed gene, I could then look at the gene with the highest expression value and analyze how these expression values vary among the different factors of cancer vs. normal tissues, cancer stages, and smoking status.  Seeing the result of this analysis could ultimately lead to information that can benefit everyone. Specifically, as lung cancer is the leading cause of cancer death in the United States, understanding how genes and their expression patterns work, could give the population a better idea of how to possibly control this in the future. Specifically, if the upregulation of a certain gene is seen in tumor tissues, higher cancer stages, and positive smoking status, then we may be able to understand that this gene may be one of the introductions to lung caner. Overall, the analysis behind these genes and the data found in the Li et al. study can give us some insight about how to get more information about lung cancer in general. 
 
 # Methods
 
@@ -37,8 +36,6 @@ Li et al. conducted geneotype calling of single nucleotide variants (SNVs) on 13
 In order to look into the functional roles and relationships of the genes with different expression in the analysis, Li et al. analyzed the pathway. To analyze the pathway, they submitted the logFC value of significant genes to Ingenuity Pathway Analysis (IPA). 
 
 ## Computational
-
-These are the methods that were used to process the sequencing data. Should probably be at least a half of a page. At a very minimum should include citations for biomartr, trimmomatic, and sailfish. Note that these three methods references don't count towards the five references you need to cite in the introduction.
 
 ### Install Tools 
 
@@ -110,7 +107,8 @@ I read in all of the transcript counts made by Sailfish individually on each sam
 
 # Results
 
-In addition to a minimum of 4-5 figures/tables (and associated captions), you should include sufficient text in this section to describe what your findings were. Remember that in the results section you just describe what you found, but you don't interpret it - that happens in the discussion.
+I looked at three genes that are a part of the human genome. These three genes are SPP1, MMP1, and TMPRSS4. The data in relation to these three genes were taken from RNA-seq data of 34 nonsmoker patients and 34 smoking/previously smoking patients. Using the data obtained from Gene Expression Omnibus (GEO) with the accession number GSE40419 in the Li et al. study, I built a sailfish index, trimmed the reads, and built a transcript gene table. In making a summary table of the top 15 most highly expressed genes in the data collected, there were 9 genes associated with males and 6 genes associated with females. The most highly expressed gene has a mean_count of 192985.07, while the least highly expressed gene in the top 15 has a mean_count of 70990.84. With EEF1A1 being the most highly expressed gene, found in both female and male, other genes that are found in both sexes include SFTPC, SFTPB, SFTPA2, SFTPA1, and RNA28S5 with varying mean_count values. CD74, EEF1A1, and MIR6723 are genes that are only found in the male samples. 
+
 
 ```{r load-libraries, message = FALSE, echo = FALSE}
 # Be sure to install these packages before running this script
@@ -158,7 +156,7 @@ top_15 %>%
   kable()
 ```
 
-**Table 1**: The most highly expressed genes in both genders included *SFTPB* and *EEF1A1*.
+**Table 1**: The most highly expressed genes in both genders included *SFTPB* and *EEF1A1*. While there are 9 males who are found in the top 15 most highly expressed genes, there are 6 females. The most highly expressed gene has a mean_count of 192985.07, while the least highly expressed gene in the top 15 has a mean_count of 70990.84. 
 
 ```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
 # this code uses the same data as above, but use it to make a
@@ -171,7 +169,7 @@ top_15 %>%
     geom_col(position = "dodge")
 ```
 
-**Figure 1**: Here we show an example figure caption.
+**Figure 1**: Here we show the mean_count of the top 15 most highly expressed genes of both females and males. With EEF1A1 being the most highly expressed gene, found in both female and male, other genes that are found in both sexes include SFTPC, SFTPB, SFTPA2, SFTPA1, and RNA28S5 with varying mean_count values. CD74, EEF1A1, and MIR6723 are genes that are only found in the male samples. 
 
 ```{r make-boxplot-of-highly-expressed-genes, echo = FALSE}
 # here we just want to pull out the unique gene names and turn
@@ -203,69 +201,89 @@ joined_table %>%
                          hjust = 1))
 ```
 
-**Figure 2**: Here we show another example figure caption.
-```{r bar-graph-of-three-genes}
+**Figure 2**: Here we show the read counts per gene by gender and cancer stage. Cancer stage 2B reveals a lot of information about the read counts for what seems to be like all male patients.  Cancer stage 3B on the other hand, shows a lot of information about the read counts for what seems to be like all female patients. The other cancer stages (1A, 1B, 2A, 3A, 4, and NA) show information about the read counts for both genders 
+
+```{r bar-graph-of-three-genes, echo = FALSE}
 # This code creates a graph to look at the 
 # comparison of expression values in these 
 # three genes. These three genes are looked at 
-# because they are the three genes that showed 
-# variance between smokers and nonsmokers in the
-# Li et al. study. The highest expression value 
+# because they are associated with poor prognosis, 
+# aggressive phenotype, or early onset of lung
+# cancer. The highest expression value 
 # will be looked at in more detail in terms of its
 # expression values in cancer tissue vs. normal tissue
 # specific stages, and nonsmokers vs smokers. 
 joined_table %>%
-  filter(genename == "SERPIND1" | 
-           genename == "TNNT1" | 
-           genename == "PCSK2") %>%
+  filter(genename == "TMPRSS4" | 
+           genename == "SPP1" | 
+           genename == "MMP1") %>%
+  group_by(genename) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   ggplot(aes(x = genename,
-             y = mean_count))
-    geom_col(position = "dodge")
+             y = mean_count)) +
+    geom_col(position = "dodge") +
+  ggtitle("Mean Expression Counts of MMP1, SPP1, and TMPRSS4")
 ```
-**Figure 3** 
+**Figure 3**: Here we show the mean expression counts of the three genes MMP1, SPP1, and TMPRSS4. These genes were used because they deal with poor prognosis, agressive phenotype, and early onset of lung cancer. While SPP1 has the highest mean expression count, TMPRSS4 has the lowest mean expression value. 
 
-```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
-# this code uses the same data as above, but use it to make a
-# barplot - remember geom_col() is just like
-# when you use geom_bar(stat = "identity)
+```{r make-barplot-of-SPP1-with-normal-vs-cancer, echo = FALSE}
+# This code looks at SPP1 expression values in normal
+# vs cancer tissue. SPP1 is being looked at because
+# it had the highest expression count in comparison
+# to the other two genes MMP1 and TMPRSS4. This is why
+# SPP1 was filtered out of the genename column.
+# The summarize function was used to get the mean value
+# of the expression counts. The group_by function was
+# used to look at these specific sections of the dataset.
 joined_table %>%
-  filter (genename == "") %>%
+  filter (genename == "SPP1") %>%
+  group_by(genename, normal_or_cancer) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = normal_or_cancer)) +
-    geom_col(position = "dodge")
+    geom_col(position = "dodge") +
+  ggtitle("Mean Expression Counts of SPPI in Cancer Tissue vs Normal Tissue")
 ```
-**Figure 4** 
+**Figure 4**: Looking at SPP1 mean expression counts in cancer tissue versus normal tissue, there is a much higher expression value of about 9000 in cancer tissue compared to the expression value of about 100-300 in normal tissue. 
 
-```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
-# this code uses the same data as above, but use it to make a
-# barplot - remember geom_col() is just like
-# when you use geom_bar(stat = "identity)
+```{r make-barplot-of-SPP1-with-cancer-stages, echo = FALSE}
+# This code makes a barplot of SPP1 expression values in
+# the different stages of cancer. The group_by function was 
+# used to look at these two specific sections of the large
+# dataset. The summarize function was used to obtain the mean
+# expression count values.
 joined_table %>%
-  filter (genename == "") %>%
+  filter (genename == "SPP1") %>%
+  group_by(genename, cancer_stage) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = cancer_stage)) +
-    geom_col(position = "dodge")
+    geom_col(position = "dodge") +
+  ggtitle("Mean Expression Counts of SPP1 in the Different Cancer Stages")
 ```
-**Figure 5** 
+**Figure 5**: Looking at SPP1 mean expression counts in the different cancer stages (1A, 1B, 2A, 2B, 3A, 3B, 4, and NA) of lung cancer, it can be seen that 3A has the largest mean expression count with a value of ~7500 with 1B being a close second with a mean expression count value of ~6750. The NA stage has the lowest mean expression count value and every other cancer stage (1A, 2A, 2B, 3B, and 4) have varying mean expression count values in between, ranging from ~1750-5500. 
 
-```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
-# this code uses the same data as above, but use it to make a
-# barplot - remember geom_col() is just like
-# when you use geom_bar(stat = "identity)
+```{r make-barplot-of-SPP1-with-smoking-status, echo = FALSE}
+# This code looks at the expression count values of SPP1
+# in terms of smoking status. Like the previous barplots, 
+# the data was filtered in terms of the SPP1 gene, the
+# summarize function was used to look at mean expression
+# values, and the group_by function was used to focus on
+# the two specific groups instead of the whole dataset.
 joined_table %>%
-  filter (genename == "") %>%
+  filter (genename == "SPP1") %>%
+  group_by(genename, smoking_status) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = smoking_status)) +
-    geom_col(position = "dodge")
+    geom_col(position = "dodge") +
+  ggtitle("Mean Expression Counts of SPP1 in Different Smoking Statuses")
 ```
-**Figure 6**
+**Figure 6**: Looking at SPP1 mean expression counts in terms of smoking status, highest mean expression count values were observed in patients who were previous or current smokers ranging from ~5750-6100. Patients with unknown smoking status had lowest mean expression count values at about 2500, and patients who had never smoked had a mean expession count value in between at about 4100. 
+
 # Discussion
 
 Add around 1-2 pages interpreting your results and considering future directions one might take in analyzing these data.
