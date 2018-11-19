@@ -1,5 +1,5 @@
 ---
-title: "Analysis Report 2: Your Title Here"
+title: "Analysis Report 2: The SPP1 Gene Shows Higher Expression Values in Lung Cancer Related Traits"
 author: "Don Francisco"
 date: "November 21, 2018"
 output: github_document
@@ -17,7 +17,7 @@ Even with all of these factors that contribute to our possibilites of getting lu
 
 Lung cancer rates, causes, reduction recommandations, and treatment can be difficult to pinpoint and understand as there are many factors that come into play. In "RNA-seq analysis of lung adenocarcinomas reveals different gene expression profiles between smoking and nonsmokin patients," Li et al. focused on exploring the gene expression profile and identifying the similarities and differences in looking at genes in smokers and nonsmokers [@li2015rna]. In looking at RNA-seq data from paired normal and tumor tissues in both 34 nonsmoking and 34 smoking patients with lung adenocarcinoma, they applied a general linear model to identify genes that were differentially expressed in nonsmoker and smoker patients and genes that varied between the two groups. Through their research, they discovered that geen expression varied at a considerable amount between nonsmoker and smoker patients with lung adenocarcinoma. They also discovered that smoking patients had more complicated disease mechanisms and abnormality with the regualation of metabolic processes. Through transcriptome analysis, their study revealed that there were pathogenetic differences in smoking and nonsmoking patients that had lung adenocarcinoma. 
 
-In analyzing the data from Li et al.'s study, I looked at the variability in the expression of different genes. Using the TMPRSS4, SPP1, and MMP1 genes, which are genes that have been shown to be related with poor prognosis, more aggressive phenotype, or early onset of lung cancer, I had the following main question: With the gene that has the highest expression value within the three, how are the expression values of this gene affected in different patients and how do they vary in terms of cancer vs. normal tissue, the different stages of cancer, and the smoking status of the patients? In the Li et al. study, RNA-seq data was gathered from 34 nonsmoking patients and 34 smoking patients. Using this data, I trimmed the reads appropriately, ran the Sailfish tool for transcript quantification from RNA-seq data, and I built a transcript gene table. Taking a look at the gathered data, I hypothesized that the gene with the highest expression value between the three genes would also have higher expression values in tumor tissue compared to normal tissue, higher stages of the lung cancer, and in patients that have or are currently smoking. I could test this hypothesis by looking at the mean expression values of the three genes of TMPRSS4, SPP1, and MMP1. Using the highest expressed gene, I could then look at the gene with the highest expression value and analyze how these expression values vary among the different factors of cancer vs. normal tissues, cancer stages, and smoking status.  Seeing the result of this analysis could ultimately lead to information that can benefit everyone. Specifically, as lung cancer is the leading cause of cancer death in the United States, understanding how genes and their expression patterns work, could give the population a better idea of how to possibly control this in the future. Specifically, if the upregulation of a certain gene is seen in tumor tissues, higher cancer stages, and positive smoking status, then we may be able to understand that this gene may be one of the introductions to lung caner. Overall, the analysis behind these genes and the data found in the Li et al. study can give us some insight about how to get more information about lung cancer in general. 
+In analyzing the data from Li et al.'s study, I looked at the variability in the expression of different genes. Using the TMPRSS4, SPP1, and MMP1 genes, which are genes that have been shown to be related with poor prognosis, more aggressive phenotype, or early onset of lung cancer, I had the following main question: How do the mean expression counts of a focal gene vary in terms of age at diagnosis, the different stages of cancer, and the smoking status of the patients? In the Li et al. study, RNA-seq data was gathered from 34 nonsmoking patients and 34 smoking patients. Using this data, I trimmed the reads appropriately, ran the Sailfish tool for transcript quantification from RNA-seq data, and I built a transcript gene table. Taking a look at the gathered data, I hypothesized that the focal gene would have higher expression values in higher stages of the lung cancer, in patients that have or are currently smoking, and in older ages of diagnosis. I could test this hypothesis by looking at the mean expression values of the three genes of TMPRSS4, SPP1, and MMP1. Using the highest expressed gene, I could then look at the gene with the highest expression value and analyze how these expression values vary among the different factors of cancer vs. normal tissues, cancer stages, and smoking status.  Seeing the result of this analysis could ultimately lead to information that can benefit everyone. Specifically, as lung cancer is the leading cause of cancer death in the United States, understanding how genes and their expression patterns work, could give the population a better idea of how to possibly control this in the future. Specifically, if the upregulation of a certain gene is seen in tumor tissues, higher cancer stages, and positive smoking status, then we may be able to understand that this gene may be one of the introductions to lung caner. Overall, the analysis behind these genes and the data found in the Li et al. study can give us some insight about how to get more information about lung cancer in general. 
 
 # Methods
 
@@ -35,7 +35,7 @@ Li et al. conducted geneotype calling of single nucleotide variants (SNVs) on 13
 
 In order to look into the functional roles and relationships of the genes with different expression in the analysis, Li et al. analyzed the pathway. To analyze the pathway, they submitted the logFC value of significant genes to Ingenuity Pathway Analysis (IPA). 
 
-## Computational
+## Computational [CHANGE I TO WE]
 
 ### Install Tools 
 
@@ -107,8 +107,26 @@ I read in all of the transcript counts made by Sailfish individually on each sam
 
 # Results
 
-I looked at three genes that are a part of the human genome. These three genes are SPP1, MMP1, and TMPRSS4. The data in relation to these three genes were taken from RNA-seq data of 34 nonsmoker patients and 34 smoking/previously smoking patients. Using the data obtained from Gene Expression Omnibus (GEO) with the accession number GSE40419 in the Li et al. study, I built a sailfish index, trimmed the reads, and built a transcript gene table. In making a summary table of the top 15 most highly expressed genes in the data collected, there were 9 genes associated with males and 6 genes associated with females. The most highly expressed gene has a mean_count of 192985.07, while the least highly expressed gene in the top 15 has a mean_count of 70990.84. With EEF1A1 being the most highly expressed gene, found in both female and male, other genes that are found in both sexes include SFTPC, SFTPB, SFTPA2, SFTPA1, and RNA28S5 with varying mean_count values. CD74, EEF1A1, and MIR6723 are genes that are only found in the male samples. 
+I looked at three genes that are a part of the human genome. These three genes are SPP1, MMP1, and TMPRSS4. The data in relation to these three genes were taken from RNA-seq data of 34 nonsmoker patients and 34 smoking/previously smoking patients. Using the data obtained from Gene Expression Omnibus (GEO) with the accession number GSE40419 in the Li et al. study, I built a sailfish index, trimmed the reads, and built a transcript gene table. In making a summary table of the top 15 most highly expressed genes in the data collected, there were 9 genes associated with males and 6 genes associated with females. The most highly expressed gene has a mean_count of 192985.07, while the least highly expressed gene in the top 15 has a mean_count of 70990.84. With EEF1A1 being the most highly expressed gene, found in both female and male, other genes that are found in both sexes include SFTPC, SFTPB, SFTPA2, SFTPA1, and RNA28S5 with varying mean_count values. CD74, EEF1A1, and MIR6723 are genes that are only found in the male samples. In looking at the read counts for the top 15 genes in terms of gender and cancer stage, cancer stage 2B reveals a lot of information about the read counts for what seems to be like all male patients.  Cancer stage 3B on the other hand, shows a lot of information about the read counts for what seems to be like all female patients. The other cancer stages (1A, 1B, 2A, 3A, 4, and NA) show information about the read counts for both genders. 
 
+## Mean Expression Counts of SPP1, MMP1, and TMPRSS4 in Cancer Tissue vs Normal Tissue
+
+In looking at the overall data collected from the Li et al. study, I first analyzed the mean expression counts of MMP1, SPP1, and TMPRSS4 in cancer tissues and normal tissues [Figure 3]. These three genes were used because they were said to be related to poor prognosis, aggressive phenotype, and early onset of lung cancer. While SPP1 and MMP1 both have higher mean expression count in cancer tissues compared normal tissues, TMPRSS4 has a mean expression value in cancer tissues and barely any expression value in normal tissues. Specifically, SPP1 has the largest mean expression count in cancer tissues overall with a value of ~8400, while this gene only has a mean expression count in normal tissues wiwth a value of ~100-200. MMP1 reveals a mean expression count of ~2200 in cancer tissues and ~>100 in normal tissues. As TMPRSS4 only has a mean expression count for cancer tissues, the value is ~400-500.
+
+
+## Mean Expression Counts of SPP1 in the Different Cancer Stages
+
+Wanting to look further into detail about the expression values of a gene related to lung cancer in terms of different characteristics of the patients, I analyzed SPP1 further. I decided to use SPP1 as the focal gene for further analysis due to the fact that it had the highest mean expression count in cancer tissues in relation to MMP1 and TMPRSS4. 
+
+The first characteristic that I decided to look at were the different cancer stages. In looking at the mean expression counts of SPP1 in the different cancer stages (1A, 1B, 2A, 2B, 3A, 3B, 4, and NA) of lung cancer, it was seen that 3A has the largest mean expression count with a value of ~7500. The 1B cancer stage was a close second, with a mean expression count value of ~6750. On the other hand though, the NA stage has the lowest mean expression count value of about 1100. Every other cancer stage (1A, 2A, 2B, 3B, and 4) have varying mean expression count values in between, ranging from ~1750-5500. 
+
+## Mean Expression Counts of SPP1 in Different Smoking Statuses
+
+The second characteristic that I analyzed in terms of SPP1 was smoking status. In looking at the mean expression counts of SPP1 in patients who were previous smokers, current smokers, nonsmokers, and NA, the highest mean expression counts were seen in patients who were either previous or current smokers. For previous smokers, the mean expression count was ~6100, which is only slightly larger than ~5750, which is the mean expression count for current smokers. Patients with unknown smoking status had lowest mean expression count values at about 2500, and patients who had never smoked had a mean expession count value in between at about 4100. 
+
+## Mean Expression Counts of SPP1 in the Different Ages of Diagnosis
+
+The last characteristic that I looked at was the age of each patient when they were diagnosed with lung cancer. In looking at the mean expression counts of SPP1 in patients at different ages of diagnosis, the marjority of the expression values are in patients that are 55 years old-78 years old. The highest expression count is found in the 70 year old samples with a value of ~21000, while ~77, ~85, and ~62 year olds have expression counts that are not much lower ranging from ~12000-18000. The samples around the 40 year old range have the lowest mean expression counts ranging from ~500-2100. All other ages have varying mean expression counts in between. 
 
 ```{r load-libraries, message = FALSE, echo = FALSE}
 # Be sure to install these packages before running this script
@@ -203,7 +221,7 @@ joined_table %>%
 
 **Figure 2**: Here we show the read counts per gene by gender and cancer stage. Cancer stage 2B reveals a lot of information about the read counts for what seems to be like all male patients.  Cancer stage 3B on the other hand, shows a lot of information about the read counts for what seems to be like all female patients. The other cancer stages (1A, 1B, 2A, 3A, 4, and NA) show information about the read counts for both genders 
 
-```{r bar-graph-of-three-genes, echo = FALSE}
+```{r make-barplot-of-genes-with-normal-vs-cancer, echo = FALSE}
 # This code creates a graph to look at the 
 # comparison of expression values in these 
 # three genes. These three genes are looked at 
@@ -211,42 +229,28 @@ joined_table %>%
 # aggressive phenotype, or early onset of lung
 # cancer. The highest expression value 
 # will be looked at in more detail in terms of its
-# expression values in cancer tissue vs. normal tissue
-# specific stages, and nonsmokers vs smokers. 
+# expression values in
+# specific stages, nonsmokers vs smokers, and
+# different ages. These three genes are being
+# looked at in terms of expression counts in
+# cancer vs. normal tissue. The highest expression
+# count will be used for further analysis. Used
+# group_by function to look at two specific parts of
+# the data, summarize is used to get the mean counts.
 joined_table %>%
-  filter(genename == "TMPRSS4" | 
-           genename == "SPP1" | 
-           genename == "MMP1") %>%
-  group_by(genename) %>%
-  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
-  ggplot(aes(x = genename,
-             y = mean_count)) +
-    geom_col(position = "dodge") +
-  ggtitle("Mean Expression Counts of MMP1, SPP1, and TMPRSS4")
-```
-**Figure 3**: Here we show the mean expression counts of the three genes MMP1, SPP1, and TMPRSS4. These genes were used because they deal with poor prognosis, agressive phenotype, and early onset of lung cancer. While SPP1 has the highest mean expression count, TMPRSS4 has the lowest mean expression value. 
-
-```{r make-barplot-of-SPP1-with-normal-vs-cancer, echo = FALSE}
-# This code looks at SPP1 expression values in normal
-# vs cancer tissue. SPP1 is being looked at because
-# it had the highest expression count in comparison
-# to the other two genes MMP1 and TMPRSS4. This is why
-# SPP1 was filtered out of the genename column.
-# The summarize function was used to get the mean value
-# of the expression counts. The group_by function was
-# used to look at these specific sections of the dataset.
-joined_table %>%
-  filter (genename == "SPP1") %>%
+  filter (genename == "SPP1" |
+            genename == "MMP1" |
+            genename == "TMPRSS4") %>%
   group_by(genename, normal_or_cancer) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = normal_or_cancer)) +
     geom_col(position = "dodge") +
-  ggtitle("Mean Expression Counts of SPPI in Cancer Tissue vs Normal Tissue")
+  ggtitle("Mean Expression Counts of SPP1, MMP1, and TMPRSS4
+          in Cancer Tissue vs Normal Tissue")
 ```
-**Figure 4**: Looking at SPP1 mean expression counts in cancer tissue versus normal tissue, there is a much higher expression value of about 9000 in cancer tissue compared to the expression value of about 100-300 in normal tissue. 
-
+**Figure 3**: Here we show the mean expression counts of the three genes MMP1, SPP1, and TMPRSS4 in cancer vs. normal tissues. These genes were used because they deal with poor prognosis, agressive phenotype, and early onset of lung cancer. While SPP1 and MMP1 both have higher mean expression count in cancer tissues compared normal tissues, TMPRSS4 has a mean expression value in cancer tissues and barely any expression value in normal tissue. SPP1 has the largest mean expression count in cancer tissues overall.
 ```{r make-barplot-of-SPP1-with-cancer-stages, echo = FALSE}
 # This code makes a barplot of SPP1 expression values in
 # the different stages of cancer. The group_by function was 
@@ -263,7 +267,7 @@ joined_table %>%
     geom_col(position = "dodge") +
   ggtitle("Mean Expression Counts of SPP1 in the Different Cancer Stages")
 ```
-**Figure 5**: Looking at SPP1 mean expression counts in the different cancer stages (1A, 1B, 2A, 2B, 3A, 3B, 4, and NA) of lung cancer, it can be seen that 3A has the largest mean expression count with a value of ~7500 with 1B being a close second with a mean expression count value of ~6750. The NA stage has the lowest mean expression count value and every other cancer stage (1A, 2A, 2B, 3B, and 4) have varying mean expression count values in between, ranging from ~1750-5500. 
+**Figure 4**: Looking at SPP1 mean expression counts in the different cancer stages (1A, 1B, 2A, 2B, 3A, 3B, 4, and NA) of lung cancer, it can be seen that 3A has the largest mean expression count with a value of ~7500 with 1B being a close second with a mean expression count value of ~6750. The NA stage has the lowest mean expression count value and every other cancer stage (1A, 2A, 2B, 3B, and 4) have varying mean expression count values in between, ranging from ~1750-5500. 
 
 ```{r make-barplot-of-SPP1-with-smoking-status, echo = FALSE}
 # This code looks at the expression count values of SPP1
@@ -282,12 +286,33 @@ joined_table %>%
     geom_col(position = "dodge") +
   ggtitle("Mean Expression Counts of SPP1 in Different Smoking Statuses")
 ```
-**Figure 6**: Looking at SPP1 mean expression counts in terms of smoking status, highest mean expression count values were observed in patients who were previous or current smokers ranging from ~5750-6100. Patients with unknown smoking status had lowest mean expression count values at about 2500, and patients who had never smoked had a mean expession count value in between at about 4100. 
+**Figure 5**: Looking at SPP1 mean expression counts in terms of smoking status, highest mean expression count values were observed in patients who were previous or current smokers ranging from ~5750-6100. Patients with unknown smoking status had lowest mean expression count values at about 2500, and patients who had never smoked had a mean expession count value in between at about 4100. 
+
+```{r make-barplot-of-SPP1-with-age, echo = FALSE}
+# This code makes a barplot of SPP1 expression values in
+# different ages of diagnosis. The group_by function was 
+# used to look at these two specific sections of the large
+# dataset. The summarize function was used to obtain the mean
+# expression count values.
+joined_table %>%
+  filter (genename == "SPP1") %>%
+  group_by(genename, age_at_diagnosis) %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  ggplot(aes(x = age_at_diagnosis,
+             y = mean_count,
+             fill = genename)) +
+    geom_col(position = "dodge") +
+  ggtitle("Mean Expression Counts of SPP1 in the Different Ages of Diagnosis")
+```
+**Figure 6**: Here we look at mean expression counts of SPP1 in the different ages of diagnosis. With ages ranging from ~40-~85, the marjority of the expression values are in patients that are 55 years old-78 years old. The highest expression count is found in the 70 year old samples, while ~77, ~85, and ~62 year olds have expression counts that are not much lower. The samples around the 40 year old range have the lowest mean expression counts. 
 
 # Discussion
 
-Add around 1-2 pages interpreting your results and considering future directions one might take in analyzing these data.
+In this analysis, we looked at the data in terms of the variation in expression value of the SPP1 gene with different characteristics related to lung cancer patients. The SPP1 gene was looked at due to the fact that it had the highest expression value in cancer tissues in comparison to the two other genes MMP1 and TMPRSS4. In terms of the data collected in the Li et al. study, my primary question asked how the focal gene's mean expression counts vary throughout different characteristics related to lung cancer. The characteristics that we looked at for this analysis were the different cancer stages, the smoking status of the patients, and the age at which each patient was diagnosed. With this central question, I hypothesized that higher expression values of the focal gene, or SPP1 would be seen in characteristics that relate to aggressive lung cancer. Specifically, I expected to see higher expression values in late cancer stages (3A, 3B, 4, etc.), in patients who were current or previous smokers, and in patients who were diagnosed at an older age compared to the others. In order to test this hypothesis, I first looked for a focal gene. To do this, I gathered the three genes that were related to lung cancer in some way, SPP1, MMP1, and TMPRSS4, as mentioned in the Li et al. study. With these three genes, I looked at the mean expression counts of each of them in both cancer and tumor tissue. Using the gene with the highest expression count in cancer tissue, I analyzed the variation in mean expression counts of this gene in different cancer stages, smoking status, and age at diagnosis. 
 
-Look up what the genes encode for (what protein they made) and how this can lead to cancer
+## Figure Analysis
+
+In order to find my focal gene, I first took a closer look at SPP1, MMP1, and TMPRSS4 mean expression counts in both cancer and normal tissue. In analyzing these three genes, they all represented notable expression values in cancer tissue, but not as significant values in normal tissue. This result could be due to the fact that these genes *are* in fact related to lung cancer. In observing the fact that SPP1 had the highest expression count in cancer tissue in comparison to the other two genes, I was led to the idea that this was my focal gene that would be looked at in terms of the characteristics that we were interested in [Figure 3]. With this information, I then looked at the mean expression counts of SPP1 in the different stages of cancer. These results revealed higher expression counts in 1B, 2A, 2B, and especially 3A. While the other stages *did* have notable values of expression, the values that correspond to these cancer stages were more significant. This information stood out to me because the high expression counts are found in the relatively lower cancer stages. Specifically, stages 3B and 4 do not have expression counts as high as the others, which are generally the stages where cancer can no longer be cured. With this confusion that I encountered, I then looked at the mean expression counts of SPP1 in terms of smoking status. The results of this analysis revealed that higher expression values were seen in patients who were either current or previous smokers. On the other hand, patients with the "never" smoking staus had a notably lower expression value, and patients with the "unknown" smoking status had the lowest. As smoking is generally seen as a significant factor with lung cancer, it is not surprising to me that there are higher expression counts of SPP1, a gene related to lung cancer, in patients who have been exposed to smoking. To further analyze the impact of SPP1 on lung cancer, I then analyzed the mean expression counts of such gene in different ages of diagnosis. With patients ranging from ~40-~85, the bulk of the expression of SPP1 takes place in ages 50-85. In further detail, highest expression counts were seen generally in ages from 70-85. While there significant expression values among all ages from 40-85, the highest expression counts seen from 70-85 is not surprising. This is because as the human body grows older, the immune system is not as strong and so things like cancer become more possible. As the SPP1 gene is related to cancer, its expression *should* be higher when cancer becomes more inevitable with a weakened immune system at an older age. 
+
 
 # Sources Cited
