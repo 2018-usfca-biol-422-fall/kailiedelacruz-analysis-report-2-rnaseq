@@ -250,7 +250,9 @@ joined_table %>%
   ggtitle("Mean Expression Counts of SPP1, MMP1, and TMPRSS4
           in Cancer Tissue vs Normal Tissue")
 ```
+
 **Figure 3**: Here we show the mean expression counts of the three genes MMP1, SPP1, and TMPRSS4 in cancer vs. normal tissues. These genes were used because they deal with poor prognosis, agressive phenotype, and early onset of lung cancer. While SPP1 and MMP1 both have higher mean expression count in cancer tissues compared normal tissues, TMPRSS4 has a mean expression value in cancer tissues and barely any expression value in normal tissue. SPP1 has the largest mean expression count in cancer tissues overall.
+
 ```{r make-barplot-of-SPP1-with-cancer-stages, echo = FALSE}
 # This code makes a barplot of SPP1 expression values in
 # the different stages of cancer. The group_by function was
@@ -267,6 +269,7 @@ joined_table %>%
     geom_col(position = "dodge") +
   ggtitle("Mean Expression Counts of SPP1 in Different Cancer Stages")
 ```
+
 **Figure 4**: Looking at SPP1 mean expression counts in the different cancer stages (1A, 1B, 2A, 2B, 3A, 3B, 4, and NA) of lung cancer, it can be seen that 3A has the largest mean expression count with a value of ~7500 with 1B being a close second with a mean expression count value of ~6750. The NA stage has the lowest mean expression count value and every other cancer stage (1A, 2A, 2B, 3B, and 4) have varying mean expression count values in between, ranging from ~1750-5500. 
 
 ```{r make-barplot-of-SPP1-with-smoking-status, echo = FALSE}
@@ -286,6 +289,7 @@ joined_table %>%
     geom_col(position = "dodge") +
   ggtitle("Mean Expression Counts of SPP1 With Different Smoking Statuses")
 ```
+
 **Figure 5**: Looking at SPP1 mean expression counts in terms of smoking status, highest mean expression count values were observed in patients who were previous or current smokers ranging from ~5750-6100. Patients with unknown smoking status had lowest mean expression count values at about 2500, and patients who had never smoked had a mean expession count value in between at about 4100. 
 
 ```{r make-barplot-of-SPP1-with-age, echo = FALSE}
@@ -304,6 +308,7 @@ joined_table %>%
     geom_col(position = "dodge") +
   ggtitle("Mean Expression Counts of SPP1 With Different Ages at Diagnosis")
 ```
+
 **Figure 6**: Here we look at mean expression counts of SPP1 in the different ages of diagnosis. With ages ranging from ~40-~85, the marjority of the expression values are in patients that are 55 years old-78 years old. The highest expression count is found in the 70 year old samples, while ~77, ~85, and ~62 year olds have expression counts that are not much lower. The samples around the 40 year old range have the lowest mean expression counts. 
 
 # Discussion
