@@ -66,6 +66,7 @@ After running this script to trim paired end reads, we checked if the output fil
 
 for file in "$@"
 do
+
 	SAMPLE=$(basename -s _1.fastq $file)
 	if [ `ls data/trimmed | grep -c $SAMPLE` -eq 0 ]
 	then
@@ -297,7 +298,10 @@ joined_table %>%
 # different ages of diagnosis. The group_by function was
 # used to look at these two specific sections of the large
 # dataset. The summarize function was used to obtain the mean
-# expression count values.
+# expression count values. Different ages of diagnosis will give
+# us an idea about how different ages may express expression
+# of SPP1. Older ages may lead to higher expression since
+# this gene has to deal with lung cancer.
 joined_table %>%
   filter(genename == "SPP1") %>%
   group_by(genename, age_at_diagnosis) %>%
