@@ -84,6 +84,7 @@ done
 In order to count all of the reads from the trimmed reads after both paired reads made it through Trimmomatic QC, we ran Sailfish using this script: 
 
 for sample in "$@"
+
 do
 
 	sampleID=$(basename -s .trim_1P.fastq $sample)

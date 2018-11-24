@@ -55,9 +55,14 @@ sailfish index -t \_ncbi\_downloads/RNA/Homo\_sapiens\_rna\_from\_genomic\_refse
 
 After running fastqc on all fastq files and saving the output to the output director, we trimmed the paired end reads in parallel. With the trimmomatics tool and paired end reads, adapters will be removed, leading low quality or N based will be removed, trailing low quality or N based will be removed, reads with a 4-base wide sliding window will be scanned and cut when the average quality per base drops below 15, and reads below 36 bases long will be dropped (Bolger *et al.*, 2014). I ran the trimmoatics tool by running this script:
 
-for file in "$@"; do TrimmomaticPE -threads 8 -basein *f**i**l**e*  − *b**a**s**e**o**u**t**d**a**t**a*/*t**r**i**m**m**e**d*/(basename -s \_1.fastq $file).trim.fastq
-ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3
-SLIDINGWINDOW:4:20 MINLEN:50 & done
+for file in "$@"; do
+
+    TrimmomaticPE -threads 8 -basein $file \
+        -baseout data/trimmed/$(basename -s _1.fastq $file).trim.fastq \
+        ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 \
+        SLIDINGWINDOW:4:20 MINLEN:50 &
+
+done
 
 After running this script to trim paired end reads, we checked if the output file for given input already exists. If it didn't, we ran Trimmomatic. This must be done because only so many threads can use Java at once, and so there may be files that are not yet trimmed. Such script was used to do so:
 
@@ -78,11 +83,19 @@ done
 
 In order to count all of the reads from the trimmed reads after both paired reads made it through Trimmomatic QC, we ran Sailfish using this script:
 
-for sample in "$@" do  sampleID=$(basename -s .trim\_1P.fastq $sample) echo "--------------------------------------------------" echo "Processing sample $sampleID"  sailfish quant -i output/sailfish-index/ \\
- -l IU \\
- -1 data/trimmed/$sampleID.trim\_1P.fastq
--2 data/trimmed/*s**a**m**p**l**e**I**D*.*t**r**i**m*<sub>2</sub>*P*.*f**a**s**t**q*  − *o**o**u**t**p**u**t*/*s**a**i**l**f**i**s**h*<sub>*q*</sub>*u**a**n**t**s*/sampleID
--p 88 done
+for sample in "$@" do
+
+    sampleID=$(basename -s .trim_1P.fastq $sample)
+    echo "--------------------------------------------------"
+    echo "Processing sample $sampleID"
+    sailfish quant -i output/sailfish-index/ \
+        -l IU \
+        -1 data/trimmed/$sampleID.trim_1P.fastq \
+        -2 data/trimmed/$sampleID.trim_2P.fastq \
+        -o output/sailfish_quants/$sampleID \
+        -p 88
+
+done
 
 ### Parse, Build Transcript Gene Table, and Consolidate Counts
 
