@@ -62,7 +62,7 @@ for file in "$@"; do
 		SLIDINGWINDOW:4:20 MINLEN:50 &
 done
 
-After running this script to trim paired end reads, I checked if the output file for given input already exists. If it didn't, we ran Trimmomatic. This must be done because only so many threads can use Java at once, and so there may be files that are not yet trimmed. Such script was used to do so: 
+After running this script to trim paired end reads, we checked if the output file for given input already exists. If it didn't, we ran Trimmomatic. This must be done because only so many threads can use Java at once, and so there may be files that are not yet trimmed. Such script was used to do so: 
 
 for file in "$@"
 do
