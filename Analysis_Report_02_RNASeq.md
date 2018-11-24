@@ -59,11 +59,20 @@ for file in "$@"; do TrimmomaticPE -threads 8 -basein *f**i**l**e*  − *b*
 ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3
 SLIDINGWINDOW:4:20 MINLEN:50 & done
 
-After running this script to trim paired end reads, I checked if the output file for given input already exists. If it didn't, we ran Trimmomatic. This must be done because only so many threads can use Java at once, and so there may be files that are not yet trimmed. Such script was used to do so:
+After running this script to trim paired end reads, we checked if the output file for given input already exists. If it didn't, we ran Trimmomatic. This must be done because only so many threads can use Java at once, and so there may be files that are not yet trimmed. Such script was used to do so:
 
-for file in "$@" do  SAMPLE=$(basename -s \_1.fastq $file) if \[ `ls data/trimmed | grep -c $SAMPLE` -eq 0 \] then TrimmomaticPE -threads 8 -basein *f**i**l**e*  − *b**a**s**e**o**u**t**d**a**t**a*/*t**r**i**m**m**e**d*/(basename -s \_1.fastq $file).trim.fastq
-ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3
-SLIDINGWINDOW:4:20 MINLEN:50 & fi done
+for file in "$@" do
+
+    SAMPLE=$(basename -s _1.fastq $file)
+    if [ `ls data/trimmed | grep -c $SAMPLE` -eq 0 ]
+    then
+        TrimmomaticPE -threads 8 -basein $file \
+          -baseout data/trimmed/$(basename -s _1.fastq $file).trim.fastq \
+          ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 \
+          SLIDINGWINDOW:4:20 MINLEN:50 &
+    fi
+
+done
 
 ### Running Sailfish
 

@@ -55,7 +55,9 @@ sailfish index -t _ncbi_downloads/RNA/Homo_sapiens_rna_from_genomic_refseq.fna -
 
 After running fastqc on all fastq files and saving the output to the output director, we trimmed the paired end reads in parallel. With the trimmomatics tool and paired end reads, adapters will be removed, leading low quality or N based will be removed, trailing low quality or N based will be removed, reads with a 4-base wide sliding window will be scanned and cut when the average quality per base drops below 15, and reads below 36 bases long will be dropped [@bolger2014trimmomatic]. I ran the trimmoatics tool by running this script: 
 
-for file in "$@"; do
+for file in "$@"; 
+do
+
 	TrimmomaticPE -threads 8 -basein $file \
 		-baseout data/trimmed/$(basename -s _1.fastq $file).trim.fastq \
 		ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 \
@@ -83,6 +85,7 @@ In order to count all of the reads from the trimmed reads after both paired read
 
 for sample in "$@"
 do
+
 	sampleID=$(basename -s .trim_1P.fastq $sample)
 	echo "--------------------------------------------------"
 	echo "Processing sample $sampleID"
