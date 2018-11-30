@@ -55,7 +55,9 @@ sailfish index -t \_ncbi\_downloads/RNA/Homo\_sapiens\_rna\_from\_genomic\_refse
 
 After running fastqc on all fastq files and saving the output to the output director, we trimmed the paired end reads in parallel. With the trimmomatics tool and paired end reads, adapters will be removed, leading low quality or N based will be removed, trailing low quality or N based will be removed, reads with a 4-base wide sliding window will be scanned and cut when the average quality per base drops below 15, and reads below 36 bases long will be dropped (Bolger *et al.*, 2014). I ran the trimmoatics tool by running this script:
 
-for file in "$@"; do
+for file in "$@";
+
+do
 
     TrimmomaticPE -threads 8 -basein $file \
         -baseout data/trimmed/$(basename -s _1.fastq $file).trim.fastq \
@@ -66,7 +68,9 @@ done
 
 After running this script to trim paired end reads, we checked if the output file for given input already exists. If it didn't, we ran Trimmomatic. This must be done because only so many threads can use Java at once, and so there may be files that are not yet trimmed. Such script was used to do so:
 
-for file in "$@" do
+for file in "$@"
+
+do
 
     SAMPLE=$(basename -s _1.fastq $file)
     if [ `ls data/trimmed | grep -c $SAMPLE` -eq 0 ]
